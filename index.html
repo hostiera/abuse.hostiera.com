@@ -3,89 +3,116 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <title>Report Abuse</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <header class="header">
   <div class="logo">HOSTIERA</div>
   <div class="right">
     <span>🇮🇳 English</span>
-    <button class="account-btn">My account</button>
+    <a href="https://www.hostiera.com/login" class="account-btn">My account</a>
   </div>
 </header>
 
 <main class="container">
 
-  <!-- STEP 1 -->
-  <div class="card active" id="step1">
-    <h1>Report abuse</h1>
-    <p>
-      If you believe any service is being used for abuse such as spam,
-      phishing, malware, copyright infringement or illegal content,
-      report it below.
-    </p>
+<!-- STEP 1 -->
+<div class="card active" id="step1">
+  <h1>Report abuse</h1>
+  <p>
+    If you believe any service is being used for abuse such as spam,
+    phishing, malware, copyright infringement or illegal content,
+    report it below.
+  </p>
 
-    <label>Abuse type</label>
-    <select id="abuseType">
-      <option value="">Select abuse type</option>
-      <option>Intellectual property infringements (incl. DMCA)</option>
-      <option>Illegal or harmful speech</option>
-      <option>Privacy violations</option>
-      <option>Child sexual abuse material (CSAM)</option>
-      <option>Adult sexual material</option>
-    </select>
+  <label>Abuse type</label>
+  <select id="abuseType">
+    <option value="">Select abuse type</option>
+    <option>Intellectual property infringements (incl. DMCA)</option>
+    <option>Illegal or harmful speech</option>
+    <option>Privacy violations</option>
+    <option>Child sexual abuse material (CSAM)</option>
+    <option>Adult sexual material</option>
+  </select>
 
-    <span class="error" id="typeError">This field is required</span>
+  <span class="error" id="typeError">This field is required</span>
 
-    <button class="primary-btn" onclick="goStep2()">Continue</button>
+  <button class="primary-btn" id="continue1" disabled>Continue</button>
+</div>
+
+<!-- STEP 2 -->
+<div class="card" id="step2">
+
+  <p class="selected">
+    Selected abuse type:
+    <span id="selectedType"></span>
+  </p>
+
+  <input type="text" placeholder="Your name *" id="name">
+  <input type="text" placeholder="Organisation name or role">
+  <input type="email" placeholder="Your email address *" id="email">
+  <input type="text" placeholder="Country of residence">
+
+  <textarea placeholder="Abuser website or service *" id="website"></textarea>
+  <textarea placeholder="Description of the issue *" id="description"></textarea>
+
+  <button class="primary-btn" id="continue2" disabled>Continue</button>
+  <button class="back-btn" onclick="backStep1()">Back</button>
+</div>
+
+<!-- STEP 3 -->
+<div class="card" id="step3">
+
+  <h3>Upload evidence</h3>
+
+  <div class="upload-box">
+    <input type="file">
   </div>
 
-  <!-- STEP 2 -->
-  <div class="card" id="step2">
-    <p class="selected">
-      Selected abuse type:
-      <span id="selectedType"></span>
-    </p>
+  <textarea id="copyright" placeholder="Identify the copyrighted work *"></textarea>
+  <textarea id="infringing" placeholder="Identify the infringing material *"></textarea>
 
-    <input type="text" placeholder="Your name *" id="name">
-    <input type="text" placeholder="Organisation name or role">
-    <input type="email" placeholder="Your email address *" id="email">
-    <input type="text" placeholder="Country of residence">
-
-    <textarea placeholder="Abuser website or service *" id="website"></textarea>
-    <textarea placeholder="Description of the issue *" id="description"></textarea>
-
-    <button class="primary-btn" onclick="goStep3()">Continue</button>
-    <button class="back-btn" onclick="backStep1()">Back</button>
-  </div>
-
-  <!-- STEP 3 -->
-  <div class="card" id="step3">
-    <h3>Upload evidence</h3>
-    <div class="upload-box">
-      <input type="file">
-    </div>
-
-    <textarea placeholder="Identify the copyrighted work *"></textarea>
-    <textarea placeholder="Identify the infringing material *"></textarea>
-
-    <div class="radio-group">
-      <label><input type="radio" name="owner"> I am authorized</label>
-      <label><input type="radio" name="owner"> I am the copyright owner</label>
-    </div>
-
-    <input type="text" placeholder="Electronic signature *">
-
-    <label class="checkbox">
-      <input type="checkbox"> I declare that the information is accurate
+  <div class="radio-group">
+    <label class="radio">
+      <input type="radio" name="owner">
+      <span></span>
+      I am authorized to act on behalf
     </label>
 
-    <button class="primary-btn">Send</button>
-    <button class="back-btn" onclick="backStep2()">Back</button>
+    <label class="radio">
+      <input type="radio" name="owner">
+      <span></span>
+      I am the copyright owner
+    </label>
   </div>
+
+  <input type="text" id="signature" placeholder="Electronic signature *">
+
+  <p class="declaration">
+    I declare that I have a good faith belief that the information provided in this notice is accurate and complete, and that the reported content or activity is illegal or violates 
+    <a href="https://www.hostiera.com/terms-of-service" target="_blank">Terms of Service</a>.
+    <br><br>
+    By submitting this form, you acknowledge that Hostiera will process your notice in accordance with its 
+    <a href="https://www.hostiera.com/abuse-policy" target="_blank">Abuse Policy</a>.
+    We may contact you for clarification or additional information.
+    <br><br>
+    📩 Abuse contact: <strong>abuse@report.hostiera.com</strong>
+  </p>
+
+  <label class="checkbox">
+    <input type="checkbox" id="agree">
+    I agree to the declaration above
+  </label>
+
+  <button class="primary-btn" id="sendBtn" disabled>Send</button>
+  <button class="back-btn" onclick="backStep2()">Back</button>
+
+</div>
 
 </main>
 
