@@ -1,52 +1,57 @@
+const dropdown = document.getElementById("dropdown");
+const selected = dropdown.querySelector(".dropdown-selected");
+const list = dropdown.querySelector(".dropdown-list");
+const items = dropdown.querySelectorAll(".item");
+
+const continue1 = document.getElementById("continue1");
+
+let selectedValue = "";
+
+/* DROPDOWN */
+selected.onclick = () => {
+  list.style.display = list.style.display === "block" ? "none" : "block";
+};
+
+items.forEach(item => {
+  item.onclick = () => {
+    selected.innerText = item.innerText;
+    selectedValue = item.innerText;
+    list.style.display = "none";
+    continue1.disabled = false;
+  };
+});
+
+/* STEP SWITCH */
 const step1 = document.getElementById("step1");
 const step2 = document.getElementById("step2");
 const step3 = document.getElementById("step3");
 
-const continue1 = document.getElementById("continue1");
-const continue2 = document.getElementById("continue2");
-const sendBtn = document.getElementById("sendBtn");
-
-/* STEP 1 */
-const abuseType = document.getElementById("abuseType");
-
-abuseType.addEventListener("change", () => {
-  continue1.disabled = !abuseType.value;
-});
-
-continue1.addEventListener("click", () => {
-  if (!abuseType.value) return;
-
-  document.getElementById("selectedType").innerText = abuseType.value;
-
+continue1.onclick = () => {
+  document.getElementById("selectedType").innerText = selectedValue;
   step1.classList.remove("active");
   step2.classList.add("active");
-});
+};
 
 /* STEP 2 */
 const nameEl = document.getElementById("name");
 const emailEl = document.getElementById("email");
 const websiteEl = document.getElementById("website");
 const descriptionEl = document.getElementById("description");
+const continue2 = document.getElementById("continue2");
 
-function validateStep2() {
-  const name = nameEl.value.trim();
-  const email = emailEl.value.trim();
-  const website = websiteEl.value.trim();
-  const description = descriptionEl.value.trim();
-
-  continue2.disabled = !(name && email && website && description);
+function validate2() {
+  continue2.disabled = !(nameEl.value && emailEl.value && websiteEl.value && descriptionEl.value);
 }
 
 [nameEl, emailEl, websiteEl, descriptionEl].forEach(el =>
-  el.addEventListener("input", validateStep2)
+  el.addEventListener("input", validate2)
 );
 
-continue2.addEventListener("click", () => {
+continue2.onclick = () => {
   step2.classList.remove("active");
   step3.classList.add("active");
-});
+};
 
-/* BACK BUTTONS */
 function backStep1() {
   step2.classList.remove("active");
   step1.classList.add("active");
@@ -61,15 +66,17 @@ window.backStep1 = backStep1;
 window.backStep2 = backStep2;
 
 /* STEP 3 */
-function validateStep3() {
-  const c = document.getElementById("copyright").value.trim();
-  const i = document.getElementById("infringing").value.trim();
-  const s = document.getElementById("signature").value.trim();
+const sendBtn = document.getElementById("sendBtn");
+
+function validate3() {
+  const c = document.getElementById("copyright").value;
+  const i = document.getElementById("infringing").value;
+  const s = document.getElementById("signature").value;
   const agree = document.getElementById("agree").checked;
   const radio = document.querySelector('input[name="owner"]:checked');
 
   sendBtn.disabled = !(c && i && s && agree && radio);
 }
 
-document.addEventListener("input", validateStep3);
-document.addEventListener("change", validateStep3);
+document.addEventListener("input", validate3);
+document.addEventListener("change", validate3);
