@@ -6,37 +6,30 @@
 }
 
 body {
-  background: #f9f9fb;
+  background: #f6f6f9;
 }
 
-/* HEADER */
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 16px 40px;
+  padding: 18px 40px;
   background: white;
   border-bottom: 1px solid #eee;
 }
 
-.logo {
-  font-weight: 700;
-}
-
 .account-btn {
-  text-decoration: none;
-  padding: 8px 14px;
   border: 1px solid #ddd;
+  padding: 8px 14px;
   border-radius: 8px;
+  text-decoration: none;
   color: black;
-  transition: 0.2s;
 }
 
 .account-btn:hover {
-  border-color: #674cc4;
   color: #674cc4;
+  border-color: #674cc4;
 }
 
-/* MAIN */
 .container {
   display: flex;
   justify-content: center;
@@ -44,12 +37,12 @@ body {
 }
 
 .card {
-  max-width: 640px;
   width: 100%;
+  max-width: 640px;
   background: white;
   padding: 40px;
   border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
   display: none;
 }
 
@@ -68,19 +61,12 @@ p {
   margin-bottom: 25px;
 }
 
-/* FORM */
-input, textarea, select {
+input, textarea {
   width: 100%;
   padding: 12px;
   border-radius: 10px;
   border: 1px solid #ddd;
   margin-bottom: 15px;
-}
-
-input:focus, textarea:focus, select:focus {
-  border-color: #674cc4;
-  box-shadow: 0 0 0 3px rgba(103,76,196,0.1);
-  outline: none;
 }
 
 .primary-btn {
@@ -90,12 +76,10 @@ input:focus, textarea:focus, select:focus {
   color: white;
   border: none;
   border-radius: 10px;
-  cursor: pointer;
 }
 
 .primary-btn:disabled {
   background: #ccc;
-  cursor: not-allowed;
 }
 
 .back-btn {
@@ -106,54 +90,64 @@ input:focus, textarea:focus, select:focus {
   border-radius: 10px;
 }
 
-/* RADIO */
-.radio {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
+/* DROPDOWN */
+.dropdown {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.dropdown-selected {
+  padding: 12px;
   cursor: pointer;
 }
 
-.radio input {
+.dropdown-list {
   display: none;
+  position: absolute;
+  width: 100%;
+  background: white;
+  border: 1px solid #ddd;
+  max-height: 200px;
+  overflow: auto;
+  z-index: 10;
 }
+
+.item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.item:hover {
+  background: #f3f0ff;
+}
+
+/* RADIO */
+.radio {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.radio input { display: none; }
 
 .radio span {
   width: 18px;
   height: 18px;
   border: 2px solid #ccc;
   border-radius: 50%;
-  position: relative;
 }
 
 .radio input:checked + span {
   border-color: #674cc4;
-}
-
-.radio input:checked + span::after {
-  content: "";
-  width: 10px;
-  height: 10px;
   background: #674cc4;
-  border-radius: 50%;
-  position: absolute;
-  top: 2px;
-  left: 2px;
 }
 
 /* DECLARATION */
-.declaration {
+.notice-box {
+  background: #f1f1f4;
+  padding: 15px;
+  border-radius: 10px;
   font-size: 13px;
-  color: #555;
-  margin: 20px 0;
-}
-
-.declaration a {
-  color: #674cc4;
-  text-decoration: none;
-}
-
-.declaration a:hover {
-  text-decoration: underline;
 }
