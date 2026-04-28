@@ -2,19 +2,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: Inter, sans-serif;
 }
 
 body {
   background: #f9f9fb;
-  color: #1d1e20;
 }
 
 /* HEADER */
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 16px 40px;
   background: white;
   border-bottom: 1px solid #eee;
@@ -22,15 +20,20 @@ body {
 
 .logo {
   font-weight: 700;
-  font-size: 18px;
 }
 
 .account-btn {
+  text-decoration: none;
   padding: 8px 14px;
   border: 1px solid #ddd;
-  background: white;
   border-radius: 8px;
-  cursor: pointer;
+  color: black;
+  transition: 0.2s;
+}
+
+.account-btn:hover {
+  border-color: #674cc4;
+  color: #674cc4;
 }
 
 /* MAIN */
@@ -41,72 +44,45 @@ body {
 }
 
 .card {
-  width: 100%;
   max-width: 640px;
+  width: 100%;
   background: white;
   padding: 40px;
   border-radius: 16px;
   box-shadow: 0 8px 30px rgba(0,0,0,0.04);
   display: none;
-  animation: fade 0.3s ease;
 }
 
 .card.active {
   display: block;
 }
 
-@keyframes fade {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 h1 {
-  font-size: 28px;
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: 15px;
 }
 
 p {
   text-align: center;
-  color: #6b6f76;
-  font-size: 14px;
-  margin-bottom: 28px;
-  line-height: 1.5;
+  color: #666;
+  margin-bottom: 25px;
 }
 
 /* FORM */
-label {
-  font-size: 13px;
-  margin-bottom: 6px;
-  display: block;
-}
-
-select,
-input,
-textarea {
+input, textarea, select {
   width: 100%;
-  padding: 12px 14px;
+  padding: 12px;
   border-radius: 10px;
-  border: 1px solid #e3e5e8;
-  font-size: 14px;
-  margin-bottom: 16px;
-  transition: 0.2s;
+  border: 1px solid #ddd;
+  margin-bottom: 15px;
 }
 
-select:focus,
-input:focus,
-textarea:focus {
+input:focus, textarea:focus, select:focus {
   border-color: #674cc4;
   box-shadow: 0 0 0 3px rgba(103,76,196,0.1);
   outline: none;
 }
 
-textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-/* BUTTONS */
 .primary-btn {
   width: 100%;
   padding: 14px;
@@ -114,51 +90,70 @@ textarea {
   color: white;
   border: none;
   border-radius: 10px;
-  font-weight: 600;
   cursor: pointer;
-  transition: 0.2s;
 }
 
-.primary-btn:hover {
-  background: #5a3fd1;
+.primary-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
 }
 
 .back-btn {
   margin-top: 10px;
   width: 100%;
   padding: 12px;
-  background: transparent;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 10px;
 }
 
-/* UI DETAILS */
-.selected {
-  background: #f3f0ff;
-  padding: 12px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  font-size: 14px;
+/* RADIO */
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  cursor: pointer;
 }
 
-.upload-box {
-  border: 2px dashed #e3e5e8;
-  padding: 30px;
-  text-align: center;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  color: #777;
-}
-
-.error {
-  font-size: 12px;
-  color: red;
+.radio input {
   display: none;
 }
 
-.checkbox {
-  display: flex;
-  gap: 10px;
+.radio span {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  position: relative;
+}
+
+.radio input:checked + span {
+  border-color: #674cc4;
+}
+
+.radio input:checked + span::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: #674cc4;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
+
+/* DECLARATION */
+.declaration {
   font-size: 13px;
-  margin: 15px 0;
+  color: #555;
+  margin: 20px 0;
+}
+
+.declaration a {
+  color: #674cc4;
+  text-decoration: none;
+}
+
+.declaration a:hover {
+  text-decoration: underline;
 }
