@@ -33,11 +33,9 @@
     <a href="mailto:abuse@report.hostiera.com">abuse@report.hostiera.com</a>.
   </p>
 
-  <label>Abuse type</label>
-
+  <label>Abuse type *</label>
   <select id="abuseType">
-    <option value="">Abuse type</option>
-
+    <option value="">Select abuse type</option>
     <option>Scams and/or fraud</option>
     <option>Phishing</option>
     <option>Malware</option>
@@ -55,6 +53,7 @@
   <button class="primary-btn" id="continue1" disabled>Continue</button>
 
 </div>
+
 <!-- STEP 2 -->
 <div class="card" id="step2">
 
@@ -63,30 +62,59 @@
     <span id="selectedType"></span>
   </p>
 
-  <input type="text" placeholder="Your name *" id="name">
-  <input type="text" placeholder="Organisation name or role">
-  <input type="email" placeholder="Your email address *" id="email">
-  <input type="text" placeholder="Country of residence">
+  <label>Your name *</label>
+  <input type="text" id="name">
+  <span class="error">This field is required</span>
 
-  <textarea placeholder="Abuser website or service *" id="website"></textarea>
-  <textarea placeholder="Description of the issue *" id="description"></textarea>
+  <label>Organisation name or role</label>
+  <input type="text">
+
+  <label>Your email address *</label>
+  <input type="email" id="email">
+  <span class="error" id="emailError">Invalid email format</span>
+
+  <label>Country of residence</label>
+  <input type="text">
+
+  <label>Abuser website or service *</label>
+  <textarea id="website"></textarea>
+  <small>Provide the URL(s), domain name(s), or IP address(es) involved</small>
+
+  <label>Description of the issue *</label>
+  <textarea id="description"></textarea>
+  <small>
+    Please describe what you believe constitutes abuse or illegal activity. Include context, timestamps,
+    and any relevant information.
+  </small>
 
   <button class="primary-btn" id="continue2" disabled>Continue</button>
   <button class="back-btn" onclick="backStep1()">Back</button>
+
 </div>
 
 <!-- STEP 3 -->
 <div class="card" id="step3">
 
   <h3>Upload evidence</h3>
+  <small>PDF, JPG, PNG, WEBP, TXT, EML – max 2 MB per file</small>
 
   <div class="upload-box">
-    <input type="file">
+    <input type="file" id="file">
   </div>
 
-  <textarea id="copyright" placeholder="Identify the copyrighted work *"></textarea>
-  <textarea id="infringing" placeholder="Identify the infringing material *"></textarea>
+  <label>Identify the copyrighted work *</label>
+  <textarea id="copyright"></textarea>
+  <small>
+    Describe the copyrighted work or intellectual property and provide official source if possible
+  </small>
 
+  <label>Identify the infringing material or content *</label>
+  <textarea id="infringing"></textarea>
+  <small>
+    Provide exact URL(s) or location(s) where the infringing material appears
+  </small>
+
+  <label>Ownership or authorization confirmation *</label>
   <div class="radio-group">
     <label class="radio">
       <input type="radio" name="owner">
@@ -101,17 +129,16 @@
     </label>
   </div>
 
-  <input type="text" id="signature" placeholder="Electronic signature *">
+  <label>Electronic signature *</label>
+  <input type="text" id="signature">
 
   <p class="declaration">
-    I declare that I have a good faith belief that the information provided in this notice is accurate and complete, and that the reported content or activity is illegal or violates 
-    <a href="https://www.hostiera.com/terms-of-service" target="_blank">Terms of Service</a>.
+    I declare that I have a good faith belief that the information provided in this notice is accurate and complete,
+    and that the reported content or activity is illegal or violates 
+    <a href="https://www.hostiera.com/terms-of-service">Terms of Service</a>.
     <br><br>
     By submitting this form, you acknowledge that Hostiera will process your notice in accordance with its 
-    <a href="https://www.hostiera.com/abuse-policy" target="_blank">Abuse Policy</a>.
-    We may contact you for clarification or additional information.
-    <br><br>
-    📩 Abuse contact: <strong>abuse@report.hostiera.com</strong>
+    <a href="https://www.hostiera.com/abuse-policy">Abuse Policy</a>.
   </p>
 
   <label class="checkbox">
