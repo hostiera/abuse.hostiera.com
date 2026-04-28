@@ -27,10 +27,21 @@ const nameEl = document.getElementById("name");
 const emailEl = document.getElementById("email");
 const websiteEl = document.getElementById("website");
 const descriptionEl = document.getElementById("description");
+
 const emailError = document.getElementById("emailError");
 
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function showError(input, errorEl) {
+  input.classList.add("input-error");
+  if (errorEl) errorEl.style.display = "block";
+}
+
+function hideError(input, errorEl) {
+  input.classList.remove("input-error");
+  if (errorEl) errorEl.style.display = "none";
 }
 
 function validateStep2() {
@@ -39,23 +50,45 @@ function validateStep2() {
   const website = websiteEl.value.trim();
   const description = descriptionEl.value.trim();
 
-  // email validation
-  if (email && !isValidEmail(email)) {
-    emailError.style.display = "block";
+  // NAME
+  if (!name) showError(nameEl);
+  else hideError(nameEl);
+
+  // EMAIL
+  if (!email) {
+    showError(emailEl, emailError);
+    emailError.innerText = "This field is required";
+  } else if (!isValidEmail(email)) {
+    showError(emailEl, emailError);
+    emailError.innerText = "Invalid email format";
   } else {
-    emailError.style.display = "none";
+    hideError(emailEl, emailError);
   }
+
+  // WEBSITE
+  if (!website) showError(websiteEl);
+  else hideError(websiteEl);
+
+  // DESCRIPTION
+  if (!description) showError(descriptionEl);
+  else hideError(descriptionEl);
 
   continue2.disabled = !(name && isValidEmail(email) && website && description);
 }
 
-[nameEl, emailEl, websiteEl, descriptionEl].forEach(el =>
-  el.addEventListener("input", validateStep2)
-);
+/* trigger on typing + blur */
+[nameEl, emailEl, websiteEl, descriptionEl].forEach(el => {
+  el.addEventListener("input", validateStep2);
+  el.addEventListener("blur", validateStep2);
+});
 
 continue2.addEventListener("click", () => {
-  step2.classList.remove("active");
-  step3.classList.add("active");
+  validateStep2(); // force validation before step change
+
+  if (!continue2.disabled) {
+    step2.classList.remove("active");
+    step3.classList.add("active");
+  }
 });
 
 /* BACK BUTTONS */
