@@ -73,3 +73,24 @@ function validateStep3() {
 
 document.addEventListener("input", validateStep3);
 document.addEventListener("change", validateStep3);
+
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function validateStep2() {
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const website = document.getElementById("website").value.trim();
+  const description = document.getElementById("description").value.trim();
+
+  const emailError = document.getElementById("emailError");
+
+  if (email && !isValidEmail(email)) {
+    emailError.style.display = "block";
+  } else {
+    emailError.style.display = "none";
+  }
+
+  continue2.disabled = !(name && isValidEmail(email) && website && description);
+}
