@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Report Abuse</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -14,7 +13,6 @@
 
 <header class="header">
   <div class="logo">HOSTIERA</div>
-
   <div class="right">
     <span>🇮🇳 English</span>
     <a href="https://www.hostiera.com/login" class="account-btn">My account</a>
@@ -25,40 +23,26 @@
 
 <!-- STEP 1 -->
 <div class="card active" id="step1">
-
   <h1>Report abuse</h1>
-
   <p>
-    If you believe any Hostinger service is being used for abuse, such as spam, phishing, malware,
-    copyright infringement, illegal content, or other harmful activity, please report it using the form
-    below or email us at 
-    <a href="mailto:abuse@report.hostiera.com">abuse@report.hostiera.com</a>.
+    If you believe any service is being used for abuse such as spam,
+    phishing, malware, copyright infringement or illegal content,
+    report it below.
   </p>
 
   <label>Abuse type</label>
+  <select id="abuseType">
+    <option value="">Select abuse type</option>
+    <option>Intellectual property infringements (incl. DMCA)</option>
+    <option>Illegal or harmful speech</option>
+    <option>Privacy violations</option>
+    <option>Child sexual abuse material (CSAM)</option>
+    <option>Adult sexual material</option>
+  </select>
 
-  <!-- CUSTOM DROPDOWN -->
-  <div class="dropdown" id="dropdown">
-    <div class="dropdown-selected">Abuse type</div>
-    <div class="dropdown-list">
-
-      <div class="item">Scams and/or fraud</div>
-      <div class="item">Phishing</div>
-      <div class="item">Malware</div>
-      <div class="item">Prohibited products</div>
-      <div class="item">Other illegal content</div>
-
-      <div class="item">Intellectual property infringements (incl. DMCA)</div>
-      <div class="item">Illegal or harmful speech</div>
-      <div class="item">Privacy violations</div>
-      <div class="item">Child sexual abuse material (CSAM)</div>
-      <div class="item">Adult sexual material</div>
-
-    </div>
-  </div>
+  <span class="error" id="typeError">This field is required</span>
 
   <button class="primary-btn" id="continue1" disabled>Continue</button>
-
 </div>
 
 <!-- STEP 2 -->
@@ -69,18 +53,26 @@
     <span id="selectedType"></span>
   </p>
 
-  <input id="name" placeholder="Your name *">
-  <input id="email" placeholder="Your email address *">
-  <textarea id="website" placeholder="Abuser website or service *"></textarea>
-  <textarea id="description" placeholder="Description of the issue *"></textarea>
+  <input type="text" placeholder="Your name *" id="name">
+  <input type="text" placeholder="Organisation name or role">
+  <input type="email" placeholder="Your email address *" id="email">
+  <input type="text" placeholder="Country of residence">
+
+  <textarea placeholder="Abuser website or service *" id="website"></textarea>
+  <textarea placeholder="Description of the issue *" id="description"></textarea>
 
   <button class="primary-btn" id="continue2" disabled>Continue</button>
   <button class="back-btn" onclick="backStep1()">Back</button>
-
 </div>
 
 <!-- STEP 3 -->
 <div class="card" id="step3">
+
+  <h3>Upload evidence</h3>
+
+  <div class="upload-box">
+    <input type="file">
+  </div>
 
   <textarea id="copyright" placeholder="Identify the copyrighted work *"></textarea>
   <textarea id="infringing" placeholder="Identify the infringing material *"></textarea>
@@ -99,20 +91,22 @@
     </label>
   </div>
 
-  <input id="signature" placeholder="Electronic signature *">
+  <input type="text" id="signature" placeholder="Electronic signature *">
 
   <p class="declaration">
     I declare that I have a good faith belief that the information provided in this notice is accurate and complete, and that the reported content or activity is illegal or violates 
-    <a href="https://www.hostiera.com/terms-of-service">Terms of Service</a>.
+    <a href="https://www.hostiera.com/terms-of-service" target="_blank">Terms of Service</a>.
+    <br><br>
+    By submitting this form, you acknowledge that Hostiera will process your notice in accordance with its 
+    <a href="https://www.hostiera.com/abuse-policy" target="_blank">Abuse Policy</a>.
+    We may contact you for clarification or additional information.
+    <br><br>
+    📩 Abuse contact: <strong>abuse@report.hostiera.com</strong>
   </p>
 
-  <div class="notice-box">
-    By submitting this form, you acknowledge that Hostiera will process your notice in accordance with its 
-    <a href="https://www.hostiera.com/abuse-policy">Abuse Policy</a> and applicable law.
-  </div>
-
   <label class="checkbox">
-    <input type="checkbox" id="agree"> I agree
+    <input type="checkbox" id="agree">
+    I agree to the declaration above
   </label>
 
   <button class="primary-btn" id="sendBtn" disabled>Send</button>
